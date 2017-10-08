@@ -16,11 +16,16 @@ bleaching = True
 w = wi.WiSARD(num_bits_addr, bleaching)
 
 # training discriminators
-print("fit")
+print(">> Starting training...")
 w.fit(data, labels)
+# w.fit(
+#     [[0, 0, 0], [1, 0, 0], [1, 1, 1]],
+#     ["a", "b", "a"]
+# )
 
-print("predict")
-array = np.zeros((1,784))
-print (array)
+print(">> Starting prediction...")
+array = np.zeros((1, 784))
+print (str(array))
+
 result = w.predict(array)
-print (result)
+print(">> Finished predicting. Predicted class is: " + str(result[0]))
