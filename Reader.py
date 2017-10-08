@@ -25,9 +25,15 @@ def get_data_and_labels():
             if item % 1000 == 0:
                 print(">> Current image number: %7d" % item)
                 
+            aux = []
             for value in range(num_of_image_values):
-                binaryValue = bc.convert(int(images_file.read(1).encode('hex'), 16))
-                data[item][value] = binaryValue
+                aux.append(int(images_file.read(1).encode('hex'), 16))
+
+            binary_image = bc.convert(aux)
+            
+            for value in range(num_of_image_values):
+                data[item][value] = binary_image[value]
+
             labels.append(int(labels_file.read(1).encode('hex'), 16))
         # print (data)
         return data, labels
