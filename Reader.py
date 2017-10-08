@@ -1,7 +1,7 @@
 import BinaryConverter as bc
 
-images_filename = "Imagens/train-images.idx3-ubyte"
-labels_filename = "Imagens/train-labels.idx1-ubyte"
+images_filename = "Resources/train-images.idx3-ubyte"
+labels_filename = "Resources/train-labels.idx1-ubyte"
 
 def get_data_and_labels():
     print("Opening files ...")
@@ -11,9 +11,10 @@ def get_data_and_labels():
     try:
         print("Reading files ...")
         images_file.read(4)
-        num_of_items = int.from_bytes(images_file.read(4), byteorder="big")
-        num_of_rows = int.from_bytes(images_file.read(4), byteorder="big")
-        num_of_colums = int.from_bytes(images_file.read(4), byteorder="big")
+        
+        num_of_items = int(images_file.read(4).encode('hex'), 16)
+        num_of_rows = int(images_file.read(4).encode('hex'), 16)
+        num_of_colums = int(images_file.read(4).encode('hex'), 16)
         labels_file.read(8)
 
         num_of_image_values = num_of_rows * num_of_colums
@@ -21,11 +22,11 @@ def get_data_and_labels():
         labels = []
 
         for item in range(num_of_items):
-            # print("Current image number: %7d" % item)
+            print("Current image number: %7d" % item)
             for value in range(num_of_image_values):
-                binaryValue = bc.convert(int.from_bytes(images_file.read(1), byteorder="big"))
+                binaryValue = bc.convert(int(images_file.read(1).encode('hex'), 16))
                 data[item][value] = binaryValue
-            labels.append(int.from_bytes(labels_file.read(1), byteorder="big"))
+            labels.append(int(labels_file.read(1).encode('hex'), 16))
         # print (data)
         return data, labels
     
