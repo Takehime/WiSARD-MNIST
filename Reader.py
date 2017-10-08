@@ -1,15 +1,15 @@
 import BinaryConverter as bc
 
-images_filename = "Resources/train-images.idx3-ubyte"
-labels_filename = "Resources/train-labels.idx1-ubyte"
+images_filename = "Resources/t10k-images.idx3-ubyte"
+labels_filename = "Resources/t10k-labels.idx1-ubyte"
 
 def get_data_and_labels():
-    print("Opening files ...")
+    print(">> Opening files...")
     images_file = open(images_filename, "rb")
     labels_file = open(labels_filename, "rb")
 
     try:
-        print("Reading files ...")
+        print(">> Reading files...")
         images_file.read(4)
         
         num_of_items = int(images_file.read(4).encode('hex'), 16)
@@ -22,7 +22,9 @@ def get_data_and_labels():
         labels = []
 
         for item in range(num_of_items):
-            print("Current image number: %7d" % item)
+            if item % 1000 == 0:
+                print(">> Current image number: %7d" % item)
+                
             for value in range(num_of_image_values):
                 binaryValue = bc.convert(int(images_file.read(1).encode('hex'), 16))
                 data[item][value] = binaryValue
@@ -33,4 +35,4 @@ def get_data_and_labels():
     finally:
         images_file.close()
         labels_file.close()
-        print("Files closed.")
+        print(">> Files closed.")
