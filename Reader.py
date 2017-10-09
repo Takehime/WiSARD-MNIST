@@ -1,12 +1,19 @@
 import BinaryConverter as bc
 
-def get_data_and_labels(images_filename, labels_filename, images_to_read):
-    print(">> Opening files...")
+def get_data_and_labels(images_filename,
+    labels_filename,
+    images_to_read = -1,
+    print_progress = False):
+
+    if print_progress:
+        print(">> Opening files...")
     images_file = open(images_filename, "rb")
     labels_file = open(labels_filename, "rb")
 
     try:
-        print(">> Reading files...")
+        if print_progress:
+            print(">> Reading files...")
+
         images_file.read(4)
         
         if images_to_read == -1:
@@ -24,7 +31,7 @@ def get_data_and_labels(images_filename, labels_filename, images_to_read):
         labels = []
 
         for item in range(num_of_items):
-            if item % 100 == 0:
+            if item % 100 == 0 and print_progress:
                 print(">> Current image number: %7d" % item)
                 
             aux = []
@@ -43,4 +50,5 @@ def get_data_and_labels(images_filename, labels_filename, images_to_read):
     finally:
         images_file.close()
         labels_file.close()
-        print(">> Files closed.")
+        if print_progress:
+            print(">> Files closed.")
