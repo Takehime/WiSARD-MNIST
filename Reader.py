@@ -1,6 +1,7 @@
 import BinaryConverter as bc
 
-def get_data_and_labels(images_filename,
+def get_data_and_labels(
+    images_filename,
     labels_filename,
     images_to_read = -1,
     print_progress = False):

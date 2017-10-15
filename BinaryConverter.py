@@ -5,7 +5,7 @@ def convert(image):
     average_brightness = np.mean(image)
     for i in range(0, len(image)):
         if image[i] < average_brightness:
-            image[i] = 0 #preto
+            image[i] = 0 
         else:
-            image[i] = 1 #branco
+            image[i] = 1
     return image
