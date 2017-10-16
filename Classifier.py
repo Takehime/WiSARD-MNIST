@@ -10,7 +10,7 @@ def train_and_predict(
     train_labels_filename, 
     pred_images_filename, 
     pred_labels_filename, 
-    num_of_bits = 27, 
+    num_of_bits = 31, 
     bleaching_value = 1, 
     confidence_value = 0.1,
     readable_images_train = -1,
@@ -137,4 +137,5 @@ if __name__ == "__main__":
             bleaching = bleaching,
             num_of_bits = num_bits_addr,
             bleaching_value = initial_bleaching_value,            
-            confidence_value = confidence_value)
+            confidence_value = confidence_value,
+            print_progress = print_progress)
