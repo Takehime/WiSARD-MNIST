@@ -10,7 +10,7 @@
 > Classifier.py [train_image_file] [train_label_file] [test-image-file] [test-label-file] [options]
 
 **options:**
-- --num_bits_addr INT: sets number of address bits (vanilla WiSARD parameter, default: 27)
+- --num_bits_addr INT: sets number of address bits (vanilla WiSARD parameter)
 - --bleaching BOOL: turns bleaching on and off (default: True)
 - --bleaching_initial_value INT: initial value for bleaching threshold (default: 1)
 - --bleaching_confidence FLOAT: confidence value used in bleaching ties (default: 0.1)
